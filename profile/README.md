@@ -4,7 +4,7 @@
 
 **A venture studio building the infrastructure for a more private, more verifiable, post-classical internet.**
 
-[north9.org](https://north9.org)
+[north9.org](https://north9.org) · [Become a member](https://north9.org/become-member)
 
 </div>
 
@@ -20,14 +20,51 @@ Our work spans four threads: **post-quantum infrastructure**, **provable media a
 
 ## Active projects
 
-| Project | What it is |
-|---|---|
-| **[Signet](https://github.com/North9LLC/Signet)** | Cryptographic watermarking SDK that camera apps embed to certify photos are real. Stamps happen at the shutter, before encoding. Verification is a binary BLS check against the [drand](https://drand.love/) public randomness beacon — no model, no score. |
-| **[qRoute](https://github.com/North9LLC/qRoute)** | Hybrid quantum circuit simulator. Auto-routes to the cheapest correct backend (light-cone, Heisenberg, stabilizer, dense). Exact expectation values on **200–1000+ qubit** circuits — on a laptop CPU. |
-| **[Apex Protocol](https://github.com/North9LLC/apex)** | Post-quantum encrypted UDP transport in Rust. Noise_XX + ML-KEM768 handshake in **247 µs**, ChaCha20-Poly1305 packet protection, GF(2⁸) FEC, multi-stream priority scheduling. ~568 MiB/s per core. |
-| **[NorthOS](https://github.com/North9LLC/NorthOS)** | A GrapheneOS fork built for people under real threat. Three switchable security tiers, 27 purpose-built defensive apps, IMSI-catcher detection, duress PIN, ultrasonic-beacon notch filtering, no Google endpoints anywhere. |
-| **[Relay](https://github.com/North9LLC/Relay)** | End-to-end encrypted messenger for high-trust networks. Per-message X25519 key rotation, ChaCha20-Poly1305 AEAD, 20-minute relay TTL, encrypted-at-rest local store. No social graph, no logs. |
-| **[North9 Search](https://github.com/North9LLC/north9-search)** | Privacy-first metasearch. Aggregates and re-ranks Brave, Mojeek, DuckDuckGo, and Wikipedia. No cookies, no tracking, no logs — upstream engines see the server, not the user. |
+### 🔐 Post-Quantum Infrastructure
+
+Build cryptography and transport for the quantum-era Internet.
+
+| Project | Status | Stack | What it does |
+|---|---|---|---|
+| **[Apex Protocol](https://github.com/North9LLC/Apex)** | ✅ Production | Rust, UDP, ML-KEM768 | High-performance post-quantum encrypted transport. 247 µs handshake, 568 MiB/s throughput, multi-stream priority scheduling, built-in FEC for lossy networks. |
+| **[Ape](https://github.com/North9LLC/Ape)** | ✅ Production | Rust, UDP, ML-KEM768 | Post-quantum encrypted reverse tunnels. Connect any device to the public Internet through hybrid X25519 + ML-KEM-768 handshake with adaptive congestion control. |
+
+### 📸 Media Authenticity & Verification
+
+Cryptographic proof that digital media is real.
+
+| Project | Status | Stack | What it does |
+|---|---|---|---|
+| **[Signet](https://github.com/North9LLC/Signet)** | ✅ Released | iOS/Kotlin + C/C++ | Photo watermarking SDK. Camera apps embed unforgeable proof from the drand public randomness beacon at capture time. Verification is binary, public, non-interactive. |
+
+### 🌐 Privacy-First Software
+
+Consumer products with zero tracking, zero logs, zero central authority.
+
+| Project | Status | Stack | What it does |
+|---|---|---|---|
+| **[Relay](https://github.com/North9LLC/Relay)** | ✅ Production | Next.js, TypeScript, X25519+ML-KEM768 | End-to-end encrypted messenger for high-trust networks. Per-message ephemeral keys, 20-minute message TTL, encrypted local-only persistence. No social graph, no cloud history. |
+| **[North9 Search](https://github.com/North9LLC/Search)** | ✅ Production | Next.js 16, React 19 | Privacy-first metasearch with zero tracking, cookies, or logs. Aggregates Brave, Mojeek, DuckDuckGo, Wikipedia with instant answers (calculator, unit conversion, IP lookup, hashing). |
+| **[NorthUSB](https://github.com/North9LLC/NorthUSB)** | ✅ Production | Browser + Rust CLI | Encrypted vault on any USB drive. Passwords, TOTP, SSH keys, secure notes — all client-side with AES-256-GCM, no network, no server. Single-command install. |
+| **[North9 Black](https://github.com/North9LLC/North9Black)** | ✅ Production | Next.js 14, TypeScript | Premium security membership site. Post-quantum communications infrastructure, member provisioning, threat intelligence dashboard for founders and operators under real threat. |
+| **[NorthOS](https://github.com/North9LLC/NorthOS)** | 🚀 Alpha | Android 16, Kotlin | GrapheneOS fork for high-threat environments. Three security tiers (no factory reset needed), 27+ defensive apps, IMSI-catcher detection, duress PIN, zero Google endpoints. Pre-alpha (v0.1). |
+
+### 🧮 Frontier Quantum
+
+Quantum simulation and quantum-native applications.
+
+| Project | Status | Stack | What it does |
+|---|---|---|---|
+| **[qRoute](https://github.com/North9LLC/qRoute)** | ✅ v0.1.0 | Python 3.11+, NumPy | Hybrid quantum circuit simulator. Exact expectation values on 200–1000+ qubit circuits without approximation, GPU, or exponential memory. Auto-routes to optimal backend (light-cone, Heisenberg, stabilizer). On PyPI. |
+
+### 🤖 AI Infrastructure
+
+AI agents and intelligence platforms.
+
+| Project | Status | Stack | What it does |
+|---|---|---|---|
+| **[Agent](https://github.com/North9LLC/Agent)** (Loop) | 🚀 Phase 2 | Next.js 15, Fastify, Redis | Self-hosted, token-efficient AI agent with chat UI, streaming responses, and shell tool execution. WebSocket streaming, tool visualization, Redis-backed session history. Phase 1 complete; Phase 2 adds Docker sandboxing. |
+| **[Lantern](https://github.com/North9LLC/lantern)** | ✅ Production | Next.js 15, PostgreSQL, Claude API | Ad intelligence platform. Monthly reports analyzing competitor ads with four ready-to-launch creative recommendations for invite-only brands. Runs ports 7770 (app) + 7771 (WebSocket). |
 
 ---
 
@@ -40,14 +77,40 @@ Our work spans four threads: **post-quantum infrastructure**, **provable media a
 
 ---
 
+## Stack overview
+
+| Thread | Primary Languages |
+|---|---|
+| **Post-quantum infrastructure** | Rust (Apex, Ape), Kotlin + C/C++ (Signet) |
+| **Privacy-first consumer** | Next.js + TypeScript (Relay, Search, NorthUSB web, North9Black), Kotlin + Android (NorthOS) |
+| **Quantum simulation** | Python 3.11+ (qRoute) |
+| **AI infrastructure** | Next.js + TypeScript + Fastify (Agent, Lantern) |
+
+---
+
+## Contributing
+
+All repositories are open source under MIT license. Issues and PRs welcome across all projects.
+
+**Before contributing:**
+1. Check the project's README for contribution guidelines
+2. Review existing issues to avoid duplicate work
+3. For crypto/security code, audit-first approach — discuss large changes in issues first
+
+---
+
 ## Get in touch
 
-- Web — [north9.org](https://north9.org)
-- Building at the frontier — privacy infrastructure, post-quantum systems, applied quantum, AI-native products? We'd like to talk.
+- **Web** — [north9.org](https://north9.org)
+- **Building at the frontier?** Privacy infrastructure, post-quantum systems, applied quantum, or AI-native products? [Let's talk.](https://north9.org/contact)
+
+---
 
 <div align="center">
 
-Built with care · North9
+Built with care · North9 LLC
+
+**All projects are MIT licensed. Code audits and security reports welcome.**
 
 </div>
 
