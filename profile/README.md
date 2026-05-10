@@ -10,36 +10,27 @@
 
 ---
 
-We build the hard parts — cryptography, transport stacks, and systems that have to work when everything else fails.
+We build the hard parts — cryptography, transport stacks, and systems that have to work when everything else fails. Everything ships under MIT.
 
 ---
 
 ## Open Source
 
-### [Seam](https://github.com/North9LLC/Seam)
+### [Seam](https://github.com/North9LLC/Seam) &nbsp;·&nbsp; Post-quantum transport protocol
 
-Post-quantum encrypted transport protocol in Rust. UDP, multi-stream, hybrid Noise\_XX + ML-KEM-768 handshake — baked in, not bolted on. 247 µs handshake, 568 MiB/s encrypted throughput per core, forward error correction for lossy links.
+A user-space UDP transport stack built in Rust. Hybrid Noise\_XX + ML-KEM-768 handshake baked in from the start — not added on top. Multi-stream multiplexing with priority scheduling, forward error correction, token-bucket pacing, and DDoS-resistant stateless cookie handshakes. 247 µs full handshake. 568 MiB/s encrypted throughput per core.
 
-```
-cargo add seam-protocol --git https://github.com/North9LLC/Seam
-```
+### [Seamless](https://github.com/North9LLC/Seamless) &nbsp;·&nbsp; Post-quantum reverse tunnels
 
-### [Seamless](https://github.com/North9LLC/Seamless)
+Expose any local service through a relay you control — HTTP by subdomain, raw TCP by port. Built on Seam, so every byte between client and relay is post-quantum encrypted end-to-end. Client dials out through NAT with no port forwarding or firewall rules.
 
-Reverse tunnel built on Seam. Expose any local service through a relay you control — HTTP by subdomain, raw TCP by port. Client dials out, no port forwarding needed. Post-quantum by default.
+### [Signet](https://github.com/North9LLC/Signet) &nbsp;·&nbsp; Cryptographic photo watermarking SDK
 
-```
-# relay
-./seamless-relay --seam-addr 0.0.0.0:4443 --http-addr 0.0.0.0:80
+Camera apps embed an unforgeable cryptographic proof at the moment the shutter fires, derived from the [drand](https://drand.love/) public randomness beacon. Verification is binary, non-interactive, and decentralized — the Ed25519 signature and beacon data either check out or they don't. Supports iOS, Android, and C/C++ via FFI.
 
-# client (behind NAT)
-./seamless --relay relay-ip:4443 --x25519 <key> --kem <key> http 3000
-```
+### [Fob](https://github.com/North9LLC/Fob) &nbsp;·&nbsp; Encrypted vault on any USB drive
 
-### [Signet](https://github.com/North9LLC/Signet)
-
-Cryptographic photo watermarking SDK. Camera apps embed an unforgeable proof derived from the [drand](https://drand.love/) public randomness beacon at the moment the shutter fires — before the image is encoded or saved. Verification is binary and non-interactive: the Ed25519 signature and beacon data either check out or they don't. Supports iOS, Android, and C/C++ via FFI.
-
+Turns a commodity USB stick into a cryptographic security key. Passwords, TOTP codes, SSH keys, and secure notes — all encrypted with Argon2id and XChaCha20-Poly1305, living entirely on the drive. Plausible deniability built in. Nothing installed on your computer.
 
 ---
 
