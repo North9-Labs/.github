@@ -1,41 +1,55 @@
 <div align="center">
 
-# North9
+# North9 Labs
 
-**Building infrastructure for a post-quantum internet.**
+**Tools for serious AI agents and secure infrastructure.**
 
-[north9.org](https://north9.org) &nbsp;·&nbsp; [contact@north9.org](mailto:contact@north9.org)
+[north9.io](https://north9.io) &nbsp;·&nbsp; [contact@north9.io](mailto:contact@north9.io)
 
 </div>
 
 ---
 
-We build the hard parts — cryptography, transport stacks, and systems that have to work when everything else fails. Everything ships under MIT.
+We build the parts that don't exist yet — AI agent runtimes, post-quantum transports, and cryptographic systems that have to work when everything else fails. Everything ships under MIT.
 
 ---
 
-## Open Source
+## AI Agents
 
-### [Seam](https://github.com/North9LLC/Seam) &nbsp;·&nbsp; Post-quantum transport protocol
+### [north9](https://github.com/North9-Labs/north9) &nbsp;·&nbsp; Sandbox + memory for autonomous agents
 
-A user-space UDP transport stack built in Rust. Hybrid Noise\_XX + ML-KEM-768 handshake baked in from the start — not added on top. Multi-stream multiplexing with priority scheduling, forward error correction, token-bucket pacing, and DDoS-resistant stateless cookie handshakes. 247 µs full handshake. 568 MiB/s encrypted throughput per core.
+The missing runtime for long-running AI agents. Every command runs inside an isolated Docker container — the agent can `rm -rf`, install malware, loop forever, and your machine is fine. Structured memory survives every `/compact` and session restart, so the agent knows exactly where it left off: which files it touched, which approaches failed, what commands to run next.
 
-### [Seamless](https://github.com/North9LLC/Seamless) &nbsp;·&nbsp; Post-quantum reverse tunnels
+One install wires it into Claude Code with automatic state saving before every compaction.
 
-Expose any local service through a relay you control — HTTP by subdomain, raw TCP by port. Built on Seam, so every byte between client and relay is post-quantum encrypted end-to-end. Client dials out through NAT with no port forwarding or firewall rules.
+```sh
+pip install "git+https://github.com/North9-Labs/north9.git#egg=north9[mcp]" && python3 -m north9 --install
+```
 
-### [Signet](https://github.com/North9LLC/Signet) &nbsp;·&nbsp; Cryptographic photo watermarking SDK
+### [Prism](https://github.com/North9-Labs/Prism) &nbsp;·&nbsp; Time-travel debugger for AI agents
 
-Camera apps embed an unforgeable cryptographic proof at the moment the shutter fires, derived from the [drand](https://drand.love/) public randomness beacon. Verification is binary, non-interactive, and decentralized — the Ed25519 signature and beacon data either check out or they don't. Supports iOS, Android, and C/C++ via FFI.
+Record every LLM call and tool execution into a compact session file. Replay it offline, fork it at any frame with a different input, and diff what changed. Git bisect for AI agents — isolate exactly which message, tool result, or model parameter caused bad output without re-running the entire expensive session from scratch.
 
-### [Fob](https://github.com/North9LLC/Fob) &nbsp;·&nbsp; Encrypted vault on any USB drive
+---
 
-Turns a commodity USB stick into a cryptographic security key. Passwords, TOTP codes, SSH keys, and secure notes — all encrypted with Argon2id and XChaCha20-Poly1305, living entirely on the drive. Plausible deniability built in. Nothing installed on your computer.
+## Secure Infrastructure
+
+### [Seam](https://github.com/North9-Labs/Seam) &nbsp;·&nbsp; Post-quantum transport protocol
+
+User-space UDP transport built in Rust. Hybrid Noise_XX + ML-KEM-768 handshake — post-quantum encryption baked in from the start, not bolted on top. Multi-stream multiplexing, forward error correction, token-bucket pacing, DDoS-resistant stateless cookies. 247 µs full handshake. 568 MiB/s encrypted throughput per core.
+
+### [Seamless](https://github.com/North9-Labs/Seamless) &nbsp;·&nbsp; Post-quantum reverse tunnels
+
+Expose any local service through a relay you control — HTTP by subdomain, raw TCP by port. Built on Seam, so every byte is post-quantum encrypted end-to-end. Client dials out through NAT with no port forwarding or firewall rules.
+
+### [Signet](https://github.com/North9-Labs/Signet) &nbsp;·&nbsp; Cryptographic photo watermarking SDK
+
+Camera apps embed an unforgeable proof at the moment the shutter fires, derived from the [drand](https://drand.love/) public randomness beacon (Cloudflare, EPFL, Protocol Labs). Verification is binary, non-interactive, and decentralized — the math either checks out or it doesn't. iOS, Android, and C/C++ via FFI.
 
 ---
 
 <div align="center">
 
-MIT &nbsp;·&nbsp; [north9.org](https://north9.org)
+MIT &nbsp;·&nbsp; [north9.io](https://north9.io)
 
 </div>
