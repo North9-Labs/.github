@@ -4,7 +4,7 @@
 
 **Tools for serious AI agents and secure infrastructure.**
 
-[north9.io](https://north9.io) &nbsp;·&nbsp; [contact@north9.io](mailto:contact@north9.io)
+[north9.org](https://north9.org) &nbsp;·&nbsp; [contact@north9.org](mailto:contact@north9.org)
 
 </div>
 
@@ -50,6 +50,6 @@ Camera apps embed an unforgeable proof at the moment the shutter fires, derived 
 
 <div align="center">
 
-MIT &nbsp;·&nbsp; [north9.io](https://north9.io)
+MIT &nbsp;·&nbsp; [north9.org](https://north9.org)
 
 </div>
