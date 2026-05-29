@@ -23,7 +23,7 @@ The missing runtime for long-running AI agents. Every command runs inside an iso
 One install wires it into Claude Code with automatic state saving before every compaction.
 
 ```sh
-pip install "git+https://github.com/North9-Labs/north9.git#egg=north9[mcp]" && python3 -m north9 --install
+curl -fsSL https://install.north9.org/north9.sh | sh
 ```
 
 ### [Prism](https://github.com/North9-Labs/Prism) &nbsp;·&nbsp; Time-travel debugger for AI agents
